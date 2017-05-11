@@ -1,0 +1,4 @@
+dest/*
+*.jpg
+*.jpeg
+!src/
