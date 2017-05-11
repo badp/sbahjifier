@@ -1,3 +1,4 @@
+#!/usr/bin/python2
 from __future__ import print_function
 
 import os.path
@@ -8,8 +9,8 @@ import PIL.ImageFilter
 import PIL.ImageOps
 
 
-def sbahjify(filename):
-    with open(os.path.join('src', filename), 'rb') as read_file:
+def sbahjify(filename, outname):
+    with open(filename, 'rb') as read_file:
         im = PIL.Image.open(read_file)
         # DO NOT USE CONTOUR, EMBOSS, FIND_EDGES
 
@@ -27,15 +28,21 @@ def sbahjify(filename):
         im = im.filter(PIL.ImageFilter.SHARPEN)
         im = im.filter(PIL.ImageFilter.SHARPEN)
 
-        with open(os.path.join('dest', filename), 'wb') as save_file:
+        with open(outname, 'wb') as save_file:
             im.save(save_file, quality=0, optimize=False, progressive=False)
 
 
 if __name__ == '__main__':
-    for filename in os.listdir('src'):
-        if not (filename.endswith('.jpg') or filename.endswith('.jpeg')):
-            continue
-        print(filename, end=' ... ')
-        sys.stdout.flush()
-        sbahjify(filename)
-        print('Done!')
+    if len(sys.argv) != 0: #some stuff takes first as "sbahjify.py ugh"
+        for arg in sys.argv:
+            if not (arg.endswith('.jpg') or arg.endswith('.jpeg')):
+                continue
+            sbahjify(arg, "sbah-"+arg)
+    else:
+        for filename in os.listdir('src'):
+            if not (filename.endswith('.jpg') or filename.endswith('.jpeg')):
+                continue
+            print(filename, end=' ... ')
+            sys.stdout.flush()
+            sbahjify(os.path.join('src', filename), os.path.join('dest', filename))
+            print('Done!')

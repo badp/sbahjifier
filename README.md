@@ -11,3 +11,13 @@ professional
 
 sbahjifier
 ![](https://raw.githubusercontent.com/orez-/sbahjifier/master/dest/chorlie_brown.jpg)
+
+## Installation
+
+- This only supports python2. So install that. 
+
+- Also, it uses PIL. (hint: `pip2 install Pillow`).
+
+## Usage
+
+If you run it on its own, it'll just convert stuff from `/src/` and output to `/dest/`. If you supply it command line arguments, it'll sbahjify those. How cool is that?
