@@ -35,8 +35,6 @@ def sbahjify(filename, outname):
 if __name__ == '__main__':
     if len(sys.argv) != 0: #some stuff takes first as "sbahjify.py ugh"
         for arg in sys.argv:
-            if not (arg.endswith('.jpg') or arg.endswith('.jpeg')):
-                continue
             sbahjify(arg, "sbah-"+arg)
     else:
         for filename in os.listdir('src'):
